@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  
+  --color-clinical-green: #3F5952;
+  --color-clinical-light: #EDEDED;
+  --color-clinical-gold: #C5A059;
+  --color-clinical-accent: #6F8A83;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-clinical-green font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight text-clinical-green;
+  }
+}
+
+.section-padding {
+  @apply py-24 px-6 md:px-12 lg:px-24;
+}
+
+.btn-primary {
+  @apply bg-clinical-green text-white px-8 py-3 rounded-none transition-all duration-500 hover:bg-clinical-accent hover:scale-105 hover:shadow-xl active:scale-95 font-medium tracking-wide uppercase text-xs cursor-pointer;
+}
+
+.btn-secondary {
+  @apply border border-clinical-green text-clinical-green px-8 py-3 rounded-none transition-all duration-500 hover:border-clinical-accent hover:bg-clinical-accent hover:text-white hover:scale-105 hover:shadow-xl active:scale-95 font-medium tracking-wide uppercase text-xs cursor-pointer;
+}
+
+.card-clinical {
+  @apply bg-clinical-light p-8 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-clinical-accent;
+}
+
+/* Blog Content Images & Typography Spacing */
+.prose-clinical p {
+  @apply mb-8 text-clinical-green/90 leading-relaxed text-lg text-justify;
+}
+
+.prose-clinical h3 {
+  @apply text-2xl font-serif text-clinical-green mt-12 mb-4 font-semibold tracking-wide block;
+}
+
+.prose-clinical ul {
+  @apply list-disc list-inside mb-8 pl-4 space-y-3;
+}
+
+.prose-clinical li {
+  @apply text-clinical-green/90 leading-relaxed text-lg;
+}
+
+.prose-clinical strong {
+  @apply font-semibold text-clinical-green;
+}
+
+.prose-clinical em {
+  @apply italic text-clinical-accent;
+}
+
+.prose-clinical img {
+  @apply grayscale rounded-2xl border border-clinical-accent shadow-md transition-all duration-1000 ease-out cursor-pointer mx-auto my-10;
+}
+
+.prose-clinical img:hover {
+  @apply grayscale-0 scale-105 shadow-xl;
+}
+
+/* Marquee Animation for Protocols */
+@property --marquee-duration {
+  syntax: '<time>';
+  inherits: true;
+  initial-value: 40s;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  --marquee-duration: 40s;
+  animation: marquee var(--marquee-duration) linear infinite;
+  transition: --marquee-duration 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.marquee-container:hover .animate-marquee {
+  --marquee-duration: 120s;
+}
+
